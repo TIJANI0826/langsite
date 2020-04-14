@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% block content %}
+<div class="register">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<p>Forgot Password <a href="{% url 'langapp:forgot_password' %}"> Click here</a></p>
+<p><a href="{% url 'register' %}">Register</a>|<a href="{% url 'langapp:login' %}">login</a></p>
+<p><a href="{% url 'langapp:change-password' %}">Change password</a></p>
+
+
+{% endblock content %}

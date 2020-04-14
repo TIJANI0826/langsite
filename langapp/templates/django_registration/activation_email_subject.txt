@@ -1,0 +1,27 @@
+`activation_key`
+    The activation key for the new account.
+
+`expiration_days`
+    The number of days remaining during which the account may be
+    activated.
+
+`request`
+    The :class:`~django.http.HttpRequest` object representing the
+    request in which the user registered.
+
+`scheme`
+    The protocol scheme used during registration; will be either
+    `'http'` or `'https'`.
+
+`site`
+    An object representing the site on which the user registered;
+    depending on whether `django.contrib.sites` is installed, this may
+    be an instance of either :class:`django.contrib.sites.models.Site`
+    (if the sites application is installed) or
+    :class:`django.contrib.sites.requests.RequestSite` (if
+    not). Consult `the documentation for the Django sites framework
+    <https://docs.djangoproject.com/en/stable/ref/contrib/sites/>`_
+    for details regarding these objects' interfaces.
+
+`user`
+    The newly-created user object.

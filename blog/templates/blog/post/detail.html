@@ -1,0 +1,90 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% block content %}
+<div class="blog">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+
+            <!-- Blog Left -->
+            <div class="col-lg-6">
+                <div class="blog_left">
+                    <div class="blog_title"> <p>{{ post.title }}</p></div>
+                    <div class="blog_text">
+                        <p> {{ post.get_markdown }} </p>
+                    </div>
+                    <div>
+                        <p>{{ post.title }}</p>
+                        <p class="small">Published {{ post.publish }} by {{ post.author }}</p>
+
+                    </div>
+                    <div>
+                        {{ post.comment_set.all }}
+                    </div>
+                </div> 
+            </div>
+            <div class="fb-comments" data-href="{{ post.build_absolute_uri }}" data-numposts="5"></div>       
+            <div><a href="{% url "langapp:home" %}">go to homepage</a></div>
+            <div><a href="{% url "blog:post_list_view" %}">go to blog lists page</a></div>
+        </div>
+    </div>
+    
+    <!-- this section for facebook commenting-->
+    
+    <div class="fb-comments" data-href="https://tijani.pythonanywhere.com" data-width="" data-numposts="5"></div>
+</div>
+
+<div class="blog_container">
+    <div class="container">
+        <div class="row blog_content_row">
+            <div class="col">
+                <div class="blog_content">
+                    <div class="blog_post_title_container">
+                        <div class="blog_category"><a href="#">travel</a></div>
+                        <div class="blog_title">{{ post.title }}</div>
+                    </div>
+                    <div class="blog_text">
+                        <p>{{ post }}</p>
+                        <figure class="blog_post_image">
+                            <img src="{% static 'images/blog_post_image.jpg' %}" alt="">
+                            <figcaption>{{ post.title }}</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="blog_post_footer d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                        <div class="blog_post_author d-flex flex-row align-items-center justify-content-start">
+                            <div class="author_image"><div><img src="{% static 'images/blog_author.jpg' %}" alt=""></div></div>
+                            <div class="author_info">
+                                <ul>
+                                    <li><a href="#">{{ post.author }}</a></li>
+                                    <li>Published {{ post.publish }} </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog_post_share ml-lg-auto">
+                            <span>share</span>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

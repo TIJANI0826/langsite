@@ -1,0 +1,12 @@
+<div class="register">
+		<div class="container">
+			{% if messages %}
+				{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+</div>
+<h1>Registration complete</h1>
